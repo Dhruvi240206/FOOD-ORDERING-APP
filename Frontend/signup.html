@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Signup</title>
-<link rel="stylesheet" href="style.css">
+    <title>Foodify - Signup</title>
+    <link rel="stylesheet" href="auth.css">
 </head>
+
 <body>
 
-<div class="container">
-<h2>Signup</h2>
-
-<input type="text" id="name" placeholder="Name">
-<input type="text" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-
-<button onclick="signup()">Register</button>
+<div class="navbar">
+    <h1 class="brand"><span class="logo-circle">F</span> Foodify</h1>
 </div>
 
-<script src="script.js"></script>
+<div class="hero">
+
+    <h1 class="main-heading">Create your account 🚀</h1>
+
+    <div class="auth-box">
+        <input type="text" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="signup()">Signup</button>
+    </div>
+
+    <p id="msg" class="msg"></p>
+
+    <p class="small-text">
+        Already have account? <a href="login.html">Login</a>
+    </p>
+
+</div>
+
+<script>
+function signup() {
+    let email = document.getElementById("email").value.trim();
+    let pass = document.getElementById("password").value.trim();
+    let msg = document.getElementById("msg");
+
+    if (!email || !pass) {
+        msg.innerText = "⚠️ Fill all fields";
+        msg.style.color = "yellow";
+        return;
+    }
+
+    localStorage.setItem("userData", JSON.stringify({email, password: pass}));
+
+    msg.innerText = "✅ Account created!";
+    msg.style.color = "lightgreen";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1000);
+}
+</script>
+
 </body>
 </html>

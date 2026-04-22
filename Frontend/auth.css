@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #fc8019, #ff9f40);
+    color: white;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.brand {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.logo-circle {
+    background: white;
+    color: #fc8019;
+    padding: 8px 12px;
+    border-radius: 50%;
+}
+
+.hero {
+    text-align: center;
+    margin-top: 120px;
+}
+
+.main-heading {
+    font-size: 42px;
+    margin-bottom: 30px;
+}
+
+.auth-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.auth-box input {
+    padding: 15px;
+    width: 250px;
+    border-radius: 8px;
+    border: none;
+}
+
+.auth-box button {
+    padding: 15px 25px;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.msg {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.small-text {
+    margin-top: 10px;
+}

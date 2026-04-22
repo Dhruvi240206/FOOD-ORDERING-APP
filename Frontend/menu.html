@@ -1,73 +1,116 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foodify Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-// MENU DATA (MAKE SURE IMAGE NAMES MATCH YOUR FILES)
-const menuItems = [
-    {name: "Burger", price: 100, img: "images/burger.jpeg"},
-    {name: "Pizza", price: 200, img: "images/pizza.jpg"},
-    {name: "Pasta", price: 150, img: "images/pasta.jpg"},
-    {name: "Sandwich", price: 80, img: "images/sandwich.jpg"},
-    {name: "French Fries", price: 70, img: "images/fries.jpg"},
-    {name: "Cold Drink", price: 50, img: "images/drink.jpg"},
-    {name: "Momos", price: 120, img: "images/momos.jpg"},
-    {name: "Noodles", price: 130, img: "images/noodles.jpg"}
-];
+<body>
 
-// LOAD MENU
-if (document.getElementById("menu")) {
-    let div = document.getElementById("menu");
+<!-- NAVBAR -->
+<div class="navbar">
+    <h1><span class="logo">F</span> Foodify</h1>
 
-    menuItems.forEach((item, i) => {
-        let itemDiv = document.createElement("div");
-        itemDiv.className = "menu-item";
+    <div class="nav-right">
+        <button class="reset-btn" onclick="resetCart()">Reset</button>
+        <div class="cart" onclick="goCheckout()">🛒 (<span id="count">0</span>)</div>
+    </div>
+</div>
 
-        itemDiv.innerHTML = `
-            <img src="${item.img}">
-            <div class="card-content">
-                <h3>${item.name}</h3>
-                <p class="price">₹${item.price}</p>
-                <button onclick="addToCart(${i})">Add</button>
-            </div>
-        `;
+<!-- TITLE -->
+<h2 class="title">🔥 Explore Delicious Food</h2>
 
-        div.appendChild(itemDiv);
-    });
+<!-- MENU -->
+<div class="menu">
+
+    <!-- BURGER -->
+    <div class="card">
+        <img src="images/burger.jpeg">
+        <h3>Burger</h3>
+        <p>₹1200</p>
+
+        <div class="qty">
+            <button onclick="dec('Burger')">-</button>
+            <span id="Burger">0</span>
+            <button onclick="inc('Burger',1200)">+</button>
+        </div>
+    </div>
+
+    <!-- PIZZA -->
+    <div class="card">
+        <img src="images/pizza.jpeg">
+        <h3>Pizza</h3>
+        <p>₹1900</p>
+
+        <div class="qty">
+            <button onclick="dec('Pizza')">-</button>
+            <span id="Pizza">0</span>
+            <button onclick="inc('Pizza',1900)">+</button>
+        </div>
+    </div>
+
+    <!-- PASTA -->
+    <div class="card">
+        <img src="images/pasta.jpeg">
+        <h3>Pasta</h3>
+        <p>₹1200</p>
+
+        <div class="qty">
+            <button onclick="dec('Pasta')">-</button>
+            <span id="Pasta">0</span>
+            <button onclick="inc('Pasta',1200)">+</button>
+        </div>
+    </div>
+
+    <!-- FRIES -->
+    <div class="card">
+        <img src="images/fries.jpeg">
+        <h3>Fries</h3>
+        <p>₹980</p>
+
+        <div class="qty">
+            <button onclick="dec('Fries')">-</button>
+            <span id="Fries">0</span>
+            <button onclick="inc('Fries',980)">+</button>
+        </div>
+    </div>
+
+    <!-- MOMOS -->
+    <div class="card">
+        <img src="images/momos.jpeg">
+        <h3>Momos</h3>
+        <p>₹2500</p>
+
+        <div class="qty">
+            <button onclick="dec('Momos')">-</button>
+            <span id="Momos">0</span>
+            <button onclick="inc('Momos',2500)">+</button>
+        </div>
+    </div>
+
+    <!-- NOODLES -->
+    <div class="card">
+        <img src="images/noodles.jpeg">
+        <h3>Noodles</h3>
+        <p>₹1900</p>
+
+        <div class="qty">
+            <button onclick="dec('Noodles')">-</button>
+            <span id="Noodles">0</span>
+            <button onclick="inc('Noodles',1900)">+</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="menu.js"></script>
+
+<script>
+function resetCart() {
+    localStorage.clear();
+    location.reload();
 }
+</script>
 
-// ADD TO CART
-function addToCart(i) {
-    cart.push(menuItems[i]);
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    updateCartCount();
-    showToast("Added to cart!");
-}
-
-// CART COUNT
-function updateCartCount() {
-    let el = document.getElementById("cart-count");
-    if (el) el.innerText = "🛒 " + cart.length;
-}
-
-updateCartCount();
-
-// SEARCH
-function searchFood() {
-    let value = document.getElementById("search").value.toLowerCase();
-    let items = document.querySelectorAll(".menu-item");
-
-    items.forEach(item => {
-        let name = item.querySelector("h3").innerText.toLowerCase();
-        item.style.display = name.includes(value) ? "block" : "none";
-    });
-}
-
-// TOAST
-function showToast(msg) {
-    let toast = document.createElement("div");
-    toast.innerText = msg;
-    toast.className = "toast";
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => toast.remove(), 2000);
-}
+</body>
+</html>
