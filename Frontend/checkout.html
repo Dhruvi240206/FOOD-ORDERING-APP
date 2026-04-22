@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Foodify Checkout</title>
+<link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛒 Checkout</h1>
+
+    <!-- Address -->
+    <div class="card">
+        <h2>📍 Delivery Address</h2>
+        <input id="addr" placeholder="Enter your full address">
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+        <h2>💳 Payment Method</h2>
+        <select id="pay">
+            <option>UPI</option>
+            <option>Credit Card</option>
+            <option>Cash on Delivery</option>
+        </select>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="card">
+        <h2>🧾 Order Summary</h2>
+        <ul id="list"></ul>
+    </div>
+
+    <!-- Total -->
+    <div class="total">
+        Total: ₹<span id="total">0</span>
+    </div>
+
+    <button class="order-btn" onclick="order()">Place Order 🚀</button>
+
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+</html>

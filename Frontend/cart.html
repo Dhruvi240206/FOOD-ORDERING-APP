@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cart</title>
-<link rel="stylesheet" href="style.css">
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<h2>Cart</h2>
-<div id="cart"></div>
-<h3 id="total"></h3>
+<body onload="loadCart()">
 
-<button onclick="placeOrder()">Place Order</button>
+<div class="navbar">
+    <h2>🛒 Your Cart</h2>
+    <a href="menu.html">⬅ Back</a>
+</div>
+
+<div class="cart-box">
+    <ul id="cartList"></ul>
+
+    <h2 id="total"></h2>
+
+    <button onclick="checkout()">Checkout</button>
+</div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
