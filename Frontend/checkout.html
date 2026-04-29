@@ -1,48 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Foodify Checkout</title>
-<link rel="stylesheet" href="checkout.css">
+<title>Checkout</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+<div id="loader" class="loader"></div>
+<div id="toast" class="toast"></div>
 
-    <h1>🛒 Checkout</h1>
-
-    <!-- Address -->
-    <div class="card">
-        <h2>📍 Delivery Address</h2>
-        <input id="addr" placeholder="Enter your full address">
-    </div>
-
-    <!-- Payment -->
-    <div class="card">
-        <h2>💳 Payment Method</h2>
-        <select id="pay">
-            <option>UPI</option>
-            <option>Credit Card</option>
-            <option>Cash on Delivery</option>
-        </select>
-    </div>
-
-    <!-- Order Summary -->
-    <div class="card">
-        <h2>🧾 Order Summary</h2>
-        <ul id="list"></ul>
-    </div>
-
-    <!-- Total -->
-    <div class="total">
-        Total: ₹<span id="total">0</span>
-    </div>
-
-    <button class="order-btn" onclick="order()">Place Order 🚀</button>
-
+<div class="navbar">
+  <div class="logo">🍔 Foodify</div>
 </div>
 
-<script src="checkout.js"></script>
+<h1 class="title">💳 Checkout</h1>
+
+<input id="address" placeholder="Enter delivery address"><br>
+
+<select id="payment">
+  <option>UPI</option>
+  <option>Card</option>
+  <option>COD</option>
+</select>
+
+<h2 id="total"></h2>
+
+<button class="btn" onclick="placeOrder()">Place Order</button>
+
+<script src="app.js"></script>
+<script>
+window.onload = renderCheckout;
+</script>
 
 </body>
 </html>
