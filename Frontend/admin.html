@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Foodify</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-bg">
+
+<header class="navbar">
+    <h1>🧑‍💼 Admin Dashboard</h1>
+</header>
+
+<div id="adminOrders"></div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+const container = document.getElementById("adminOrders");
+
+function render() {
+    container.innerHTML = "";
+
+    orders.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order-card";
+
+        let items = "";
+        order.items.forEach(i => {
+            items += `<p>${i.name} x${i.qty}</p>`;
+        });
+
+        div.innerHTML = `
+            <h3>Order ID: ${order.id}</h3>
+            ${items}
+            <p>Total: ₹${order.total}</p>
+
+            <select onchange="updateStatus(${order.id}, this.value)">
+                <option ${order.status=="Placed"?"selected":""}>Placed</option>
+                <option ${order.status=="Preparing"?"selected":""}>Preparing</option>
+                <option ${order.status=="Delivered"?"selected":""}>Delivered</option>
+            </select>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function updateStatus(id, status) {
+    orders = orders.map(o => {
+        if (o.id === id) o.status = status;
+        return o;
+    });
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+    render();
+}
+
+render();
+</script>
+
+</body>
+</html>

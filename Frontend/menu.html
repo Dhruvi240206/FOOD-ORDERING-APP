@@ -1,115 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Foodify Menu</title>
-    <link rel="stylesheet" href="style.css">
+<title>Foodify Menu</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
+<!-- LOADER + TOAST -->
+<div id="loader" class="loader"></div>
+<div id="toast" class="toast"></div>
+
 <div class="navbar">
-    <h1><span class="logo">F</span> Foodify</h1>
-
-    <div class="nav-right">
-        <button class="reset-btn" onclick="resetCart()">Reset</button>
-        <div class="cart" onclick="goCheckout()">🛒 (<span id="count">0</span>)</div>
-    </div>
+  <div class="logo">🍔 Foodify</div>
+  <div>
+    <a href="cart.html">🛒 Cart (<span id="cartCount">0</span>)</a>
+    <a href="orders.html">📦 Orders</a>
+  </div>
 </div>
 
-<!-- TITLE -->
-<h2 class="title">🔥 Explore Delicious Food</h2>
+<h1 class="title">🔥 Explore Delicious Food</h1>
 
-<!-- MENU -->
-<div class="menu">
+<div id="menu" class="food-grid"></div>
 
-    <!-- BURGER -->
-    <div class="card">
-        <img src="images/burger.jpeg">
-        <h3>Burger</h3>
-        <p>₹1200</p>
-
-        <div class="qty">
-            <button onclick="dec('Burger')">-</button>
-            <span id="Burger">0</span>
-            <button onclick="inc('Burger',1200)">+</button>
-        </div>
-    </div>
-
-    <!-- PIZZA -->
-    <div class="card">
-        <img src="images/pizza.jpeg">
-        <h3>Pizza</h3>
-        <p>₹1900</p>
-
-        <div class="qty">
-            <button onclick="dec('Pizza')">-</button>
-            <span id="Pizza">0</span>
-            <button onclick="inc('Pizza',1900)">+</button>
-        </div>
-    </div>
-
-    <!-- PASTA -->
-    <div class="card">
-        <img src="images/pasta.jpeg">
-        <h3>Pasta</h3>
-        <p>₹1200</p>
-
-        <div class="qty">
-            <button onclick="dec('Pasta')">-</button>
-            <span id="Pasta">0</span>
-            <button onclick="inc('Pasta',1200)">+</button>
-        </div>
-    </div>
-
-    <!-- FRIES -->
-    <div class="card">
-        <img src="images/fries.jpeg">
-        <h3>Fries</h3>
-        <p>₹980</p>
-
-        <div class="qty">
-            <button onclick="dec('Fries')">-</button>
-            <span id="Fries">0</span>
-            <button onclick="inc('Fries',980)">+</button>
-        </div>
-    </div>
-
-    <!-- MOMOS -->
-    <div class="card">
-        <img src="images/momos.jpeg">
-        <h3>Momos</h3>
-        <p>₹2500</p>
-
-        <div class="qty">
-            <button onclick="dec('Momos')">-</button>
-            <span id="Momos">0</span>
-            <button onclick="inc('Momos',2500)">+</button>
-        </div>
-    </div>
-
-    <!-- NOODLES -->
-    <div class="card">
-        <img src="images/noodles.jpeg">
-        <h3>Noodles</h3>
-        <p>₹1900</p>
-
-        <div class="qty">
-            <button onclick="dec('Noodles')">-</button>
-            <span id="Noodles">0</span>
-            <button onclick="inc('Noodles',1900)">+</button>
-        </div>
-    </div>
-
-</div>
-
-<script src="menu.js"></script>
-
+<script src="app.js"></script>
 <script>
-function resetCart() {
-    localStorage.clear();
-    location.reload();
-}
+window.onload = ()=>{
+ renderMenu();
+ updateCartCount();
+};
 </script>
 
 </body>

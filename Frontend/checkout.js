@@ -1,39 +1,41 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const summary = document.getElementById("summary");
+const totalEl = document.getElementById("total");
 
-let list = document.getElementById("list");
 let total = 0;
 
-// CLEAR OLD UI
-list.innerHTML = "";
+cart.forEach(item => {
+    const div = document.createElement("div");
+    div.innerHTML = `${item.name} x${item.qty} = ₹${item.price * item.qty}`;
+    summary.appendChild(div);
 
-for (let name in cart) {
-    let item = cart[name];
+    total += item.price * item.qty;
+});
 
-    // SAFE CHECK (fixes undefined bug)
-    if (!item || !item.q || !item.p) continue;
+totalEl.innerText = total;
 
-    let li = document.createElement("li");
+function placeOrder() {
+    const address = document.getElementById("address").value;
 
-    li.innerText = `${name} x${item.q} = ₹${item.q * item.p}`;
-
-    list.appendChild(li);
-
-    total += item.q * item.p;
-}
-
-document.getElementById("total").innerText = total;
-
-function order() {
-    let addr = document.getElementById("addr").value;
-
-    if (!addr) {
-        alert("Enter address!");
+    if (!address) {
+        alert("Please enter address!");
         return;
     }
 
-    alert("🎉 Order placed successfully!");
+    const order = {
+        id: Date.now(),
+        items: cart,
+        total: total,
+        status: "Placed"
+    };
 
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(order);
+
+    localStorage.setItem("orders", JSON.stringify(orders));
     localStorage.removeItem("cart");
 
-    window.location.href = "menu.html";
+    alert("Order placed successfully 🎉");
+
+    window.location.href = "orders.html";
 }
